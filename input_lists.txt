@@ -1,0 +1,15 @@
+[Proteins]
+1S9I A
+1ZOG A
+7PQV A
+[Ligands]
+CSC1=NC2=C(N1)C(=C(C(=C2Br)Br)Br)Br K37
+Clc1ccc(cc1)C(=O)Cn2c3c(Br)c(Br)c(Br)c(Br)c3nc2SC S6
+CC(=O)CSC1=NC2=C(Br)C(Br)=C(Br)C(Br)=C2N1 S11
+Brc3c2c(nc1SCC(=O)n12)c(Br)c(Br)c3Br C1
+Brc4c3c(nc2S\C(=C/c1ccccc1)C(=O)n23)c(Br)c(Br)c4Br C2
+Brc4c3c(nc2SC(/N=N/c1ccccc1)C(=O)n23)c(Br)c(Br)c4Br C3
+Brc5c4c(nc3S\C(=C/c1ccc(cc1)N2CCOCC2)C(=O)n34)c(Br)c(Br)c5Br C4
+O=C(OCC)c1ccc(cc1)/C=C3\Sc4nc2c(Br)c(Br)c(Br)c(Br)c2n4C3=O C5
+Brc5c4c(nc3S\C(=C/c1ccc(cc1)N2CCNCC2)C(=O)n34)c(Br)c(Br)c5Br C6
+CN1CCN(CC1)c2ccc(cc2)/C=C4\Sc5nc3c(Br)c(Br)c(Br)c(Br)c3n5C4=O C7
