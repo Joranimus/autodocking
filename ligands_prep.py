@@ -1,6 +1,5 @@
 from rdkit import Chem
 from rdkit.Chem import AllChem
-from openbabel import openbabel
 import os
 import subprocess
 import sys
@@ -37,15 +36,8 @@ os.makedirs(output_dir, exist_ok=True)
 # Find OpenBabel executable dynamically
 obabel_path = shutil.which("obabel")
 if not obabel_path:
-    print("Error: OpenBabel 'obabel' executable not found in PATH. Ensure openbabel-wheel is installed and PATH includes the environment's bin directory.")
-    sys.exit(1)
-
-# Path to OpenBabel executable in docking_py3 environment
-obabel_path = r"C:\Users\Jora\Miniconda3\envs\docking_py3\Library\bin\obabel.exe"
-
-# Verify OpenBabel
-if not os.path.exists(obabel_path):
-    print(f"Error: OpenBabel not found at '{obabel_path}'. Install openbabel-wheel or adjust path.")
+    print("Error: OpenBabel 'obabel' executable not found in PATH.")
+    print("Please add OpenBabel to your system PATH or install it.")
     sys.exit(1)
 
 # Ligand preparation function

@@ -1,0 +1,8 @@
+#folders
+ligands/
+proteins/
+results/
+temp*.json
+
+# VS Code settings
+.vscode/

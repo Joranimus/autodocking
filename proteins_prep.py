@@ -6,17 +6,8 @@ import os
 import subprocess
 import sys
 import json
+import shutil
 
-"""
-# Read JSON input file from command-line argument
-if len(sys.argv) != 2:
-    print("Usage: python batch_prepare_proteins.py <input_json>")
-    sys.exit(1)
-
-input_json = sys.argv[1]
-with open(input_json, "r") as f:
-    proteins = json.load(f)
-"""
 
 # Set default JSON file path (relative to c:\Users\Jora\Desktop\DOCKING\Programm)
 DEFAULT_JSON = "temp_proteins.json"
@@ -44,24 +35,16 @@ if not proteins:
 output_dir = "proteins"
 os.makedirs(output_dir, exist_ok=True)
 
-# Path to AutoDock Tools prepare_receptor4.py and Python 2.7
+# Path to MGLTools prepare_receptor4.py
 adt_script = r"C:\Program Files (x86)\MGLTools-1.5.7\Lib\site-packages\AutoDockTools\Utilities24\prepare_receptor4.py"
-mgltools_lib = r"C:\Program Files (x86)\MGLTools-1.5.7\Lib\site-packages"
-python2_path = r"C:\Users\Jora\Miniconda3\envs\docking_py2\python.exe"
-python2_lib = r"C:\Users\Jora\Miniconda3\envs\docking_py2\Lib\site-packages"
+mgltools_python = r"C:\Program Files (x86)\MGLTools-1.5.7\python.exe"
 
-# Verify paths
+# Verify MGLTools installation
 if not os.path.exists(adt_script):
-    print(f"Error: {adt_script} not found. Install MGLTools or adjust path.")
+    print(f"Error: {adt_script} not found. Install MGLTools.")
     sys.exit(1)
-if not os.path.exists(python2_path):
-    print(f"Error: {python2_path} not found. Install Python 2.7.11 or adjust path.")
-    sys.exit(1)
-if not os.path.exists(mgltools_lib):
-    print(f"Error: {mgltools_lib} not found. Verify MGLTools installation.")
-    sys.exit(1)
-if not os.path.exists(python2_lib):
-    print(f"Error: {python2_lib} not found. Verify Python 2.7.11 installation.")
+if not os.path.exists(mgltools_python):
+    print(f"Error: {mgltools_python} not found. Install MGLTools.")
     sys.exit(1)
 
 # Protein preparation function
@@ -104,15 +87,13 @@ def prepare_protein(pdb_id, chain_id, output_dir):
             PDBFile.writeFile(fixer.topology, fixer.positions, f)
         print(f"Saved fixed PDB: {fixed_pdb}")
 
-        # Convert to PDBQT with AutoDock Tools using Python 2.7
+        # Convert to PDBQT with MGLTools prepare_receptor4.py
         output_pdbqt = os.path.join(output_dir, f"{pdb_id}_{chain_id}chain.pdbqt")
-        env = os.environ.copy()
-        env["PYTHONPATH"] = f"{python2_lib};{mgltools_lib};{env.get('PYTHONPATH', '')}"
         result = subprocess.run([
-            python2_path, adt_script, "-r", fixed_pdb, "-o", output_pdbqt, "-A", "hydrogens"
-        ], env=env, capture_output=True, text=True)
+            mgltools_python, adt_script, "-r", fixed_pdb, "-o", output_pdbqt, "-A", "hydrogens"
+        ], capture_output=True, text=True)
         if result.returncode != 0:
-            raise RuntimeError(f"ADT preparation failed for {pdb_id}: {result.stderr}")
+            raise RuntimeError(f"prepare_receptor4.py failed for {pdb_id}: {result.stderr}")
         print(f"Generated rigid PDBQT: {output_pdbqt}")
         
         # Clean up intermediate files
