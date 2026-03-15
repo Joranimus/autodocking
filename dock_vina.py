@@ -1,11 +1,20 @@
 import os
 import subprocess
+from datetime import datetime
 
 # Input parameters
-proteins_dir = r"proteins"  # Folder with proteins and configs
-ligands_dir = r"ligands"    # Folder with ligands
-results_dir = r"results"    # Output folder
+proteins_dir = "proteins"  # Folder with proteins and configs
+ligands_dir = "ligands"    # Folder with ligands
 vina_path = "vina"  # Adjust to full path if needed, e.g., r"C:\Program Files\AutoDockVina\vina.exe"
+
+# Create timestamped results folder
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+results_dir = os.path.join("results", f"docking_run_{timestamp}")
+os.makedirs(results_dir, exist_ok=True)
+print(f"Created results folder: {results_dir}\n")
+
+# Set environment variable for other scripts
+os.environ["RESULTS_DIR"] = results_dir
 
 # Verify paths
 if not os.path.exists(proteins_dir):
@@ -45,7 +54,8 @@ def dock_ligand(protein_pdbqt, config_file, ligand_pdbqt, results_subdir):
             "--receptor", os.path.join(proteins_dir, protein_pdbqt),
             "--ligand", os.path.join(ligands_dir, ligand_pdbqt),
             "--config", os.path.join(proteins_dir, config_file),
-            "--out", output_pdbqt
+            "--out", output_pdbqt,
+            "--seed", "42"
         ]
         result = subprocess.run(cmd, capture_output=True, text=True, check=True)
         print(f"Docked {ligand_name} to {protein_name}: Output at {output_pdbqt}")

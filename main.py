@@ -9,7 +9,7 @@ RUN_PROTEIN_PREP = True       # Prepare proteins (download, fix, convert to PDBQ
 RUN_CONFIG_BOX = True         # Generate Vina config files with grid boxes
 RUN_LIGAND_PREP = True        # Prepare ligands (SMILES to PDBQT)
 RUN_DOCKING = True            # Run AutoDock Vina docking
-RUN_EXTRACT_POSES = True      # Extract docking poses to PDB files
+RUN_EXTRACT_POSES = False      # Extract docking poses to PDB files
 RUN_EXTRACT_RESULTS = True    # Generate summary files with binding affinities
 
 # ==================== PIPELINE EXECUTION ====================
@@ -20,16 +20,11 @@ def run_step(step_name, script_name):
     print(f"Running: {step_name}")
     print(f"{'='*60}")
     try:
-        result = subprocess.run([sys.executable, script_name], check=True, capture_output=True, text=True)
-        print(result.stdout)
-        if result.stderr:
-            print(f"Warnings/Errors:\n{result.stderr}")
+        result = subprocess.run([sys.executable, script_name], check=True, text=True)
         print(f"✓ {step_name} completed successfully")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"✗ Error in {step_name}:")
-        print(e.stdout)
-        print(e.stderr)
+        print(f"✗ Error in {step_name}")
         return False
     except Exception as e:
         print(f"✗ Unexpected error in {step_name}: {e}")

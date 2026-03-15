@@ -49,10 +49,10 @@ for pdbqt_file in pdbqt_files:
 center_x = {pocket_center[0]:.3f}
 center_y = {pocket_center[1]:.3f}
 center_z = {pocket_center[2]:.3f}
-size_x = 22
-size_y = 22
-size_z = 22
-exhaustiveness = 8
+size_x = 23
+size_y = 23
+size_z = 23
+exhaustiveness = 32
 """
     
     with open(os.path.join(proteins_dir, f"{base_name}_vina_config.txt"), 'w') as f:

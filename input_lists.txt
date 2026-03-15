@@ -13,3 +13,11 @@ Brc5c4c(nc3S\C(=C/c1ccc(cc1)N2CCOCC2)C(=O)n34)c(Br)c(Br)c5Br C4
 O=C(OCC)c1ccc(cc1)/C=C3\Sc4nc2c(Br)c(Br)c(Br)c(Br)c2n4C3=O C5
 Brc5c4c(nc3S\C(=C/c1ccc(cc1)N2CCNCC2)C(=O)n34)c(Br)c(Br)c5Br C6
 CN1CCN(CC1)c2ccc(cc2)/C=C4\Sc5nc3c(Br)c(Br)c(Br)c(Br)c3n5C4=O C7
+Brc1c2[nH]c(SCCCN3CCN(C)CC3)nc2c(Br)c(Br)c1Br A1
+Brc1c(Br)c(Br)c(Br)c2nc(SCCCN3CCOCC3)[nH]c21 A2
+Brc1c2[nH]c(SCCCOc3cccc(CN4CCN(C)CC4)c3)nc2c(Br)c(Br)c1Br A3
+Brc1c2[nH]c(SCCCOc3cccc(CN4CCN(CC4)CC)c3)nc2c(Br)c(Br)c1Br A4
+N#CCN1CCN(CC1)Cc1cccc(OCCCSc2[nH]c3c(n2)c(Br)c(Br)c(Br)c3Br)c1 A5
+N#CCCN1CCN(Cc2cccc(OCCCSc3[nH]c4c(n3)c(Br)c(Br)c(Br)c4Br)c2)CC1 A6
+Brc1c2[nH]c(SCCCOc3cccc(CN4CCN(CC4)c4ccccc4)c3)nc2c(Br)c(Br)c1Br A7
+Fc1ccccc1N1CCN(CC1)Cc1cccc(OCCCSc2[nH]c3c(n2)c(Br)c(Br)c(Br)c3Br)c1 A8

@@ -1,8 +1,15 @@
 import os
 import subprocess
+from datetime import datetime
 
-# Configuration
-results_dir = "results"
+# Configuration - read from file if exists
+if os.path.exists(".last_results_dir.txt"):
+    with open(".last_results_dir.txt", "r") as f:
+        results_dir = f.read().strip()
+    print(f"Using results directory from docking: {results_dir}")
+else:
+    results_dir = "results"
+    print(f"No docking results path found, using default: {results_dir}")
 
 # Find all docked PDBQT files
 pdbqt_files = []
@@ -24,7 +31,7 @@ for pdbqt_file in pdbqt_files:
     os.makedirs(poses_dir, exist_ok=True)
     
     # Extract all poses to separate PDB files
-    output_pattern = os.path.join(poses_dir, f"{ligand_name}_pose_#.pdb")
+    output_pattern = os.path.join(poses_dir, f"{ligand_name}_pose_.pdb")
     result = subprocess.run([
         "obabel", "-ipdbqt", pdbqt_file, "-opdb", "-O", output_pattern, "-m"
     ], capture_output=True, text=True)
