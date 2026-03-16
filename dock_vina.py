@@ -1,32 +1,38 @@
 import os
+import json
+import shutil
 import subprocess
 from datetime import datetime
+from settings_loader import get_selected_proteins, get_selected_ligands
 
 # Input parameters
-proteins_dir = "proteins"  # Folder with proteins and configs
-ligands_dir = "ligands"    # Folder with ligands
-vina_path = "vina"  # Adjust to full path if needed, e.g., r"C:\Program Files\AutoDockVina\vina.exe"
+proteins_dir = "proteins"
+ligands_dir = "ligands"
+vina_path = "vina"
+
+# Get selected proteins and ligands from settings
+selected_proteins = get_selected_proteins()
+pdbqt_files = [f"{p['pdb_id']}_{p['chain_id']}chain.pdbqt" for p in selected_proteins]
+pdbqt_files = [f for f in pdbqt_files if os.path.exists(os.path.join(proteins_dir, f))]
+
+selected_ligands = get_selected_ligands()
+ligand_files = [f"{l['name']}.pdbqt" for l in selected_ligands]
+ligand_files = [f for f in ligand_files if os.path.exists(os.path.join(ligands_dir, f))]
 
 # Create timestamped results folder
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 results_dir = os.path.join("results", f"docking_run_{timestamp}")
 os.makedirs(results_dir, exist_ok=True)
 print(f"Created results folder: {results_dir}\n")
-
-# Set environment variable for other scripts
 os.environ["RESULTS_DIR"] = results_dir
 
-# Verify paths
 if not os.path.exists(proteins_dir):
     print(f"Error: Proteins directory {proteins_dir} does not exist.")
     exit(1)
 if not os.path.exists(ligands_dir):
     print(f"Error: Ligands directory {ligands_dir} does not exist.")
     exit(1)
-os.makedirs(results_dir, exist_ok=True)
 
-# Get protein and config files
-pdbqt_files = [f for f in os.listdir(proteins_dir) if f.endswith(".pdbqt")]
 config_files = [f for f in os.listdir(proteins_dir) if f.endswith("_vina_config.txt")]
 if not pdbqt_files:
     print(f"Error: No .pdbqt files found in {proteins_dir}.")
@@ -35,10 +41,8 @@ if not config_files:
     print(f"Error: No config files found in {proteins_dir}.")
     exit(1)
 
-# Get ligand files
-ligand_files = [f for f in os.listdir(ligands_dir) if f.endswith(".pdbqt")]
 if not ligand_files:
-    print(f"Error: No ligand .pdbqt files found in {ligands_dir}.")
+    print(f"Error: No selected ligand .pdbqt files found in {ligands_dir}.")
     exit(1)
 
 # Step 1: Function to dock a single ligand to a protein
@@ -79,8 +83,10 @@ for protein_pdbqt in pdbqt_files:
     # Create results subfolder for this protein
     results_subdir = os.path.join(results_dir, protein_name)
     os.makedirs(results_subdir, exist_ok=True)
-    
-    # Dock all ligands to this protein
+
+    # Copy config file to results folder
+    shutil.copy(os.path.join(proteins_dir, config_file), os.path.join(results_subdir, config_file))
+
     for ligand_pdbqt in ligand_files:
         output_pdbqt = dock_ligand(protein_pdbqt, config_file, ligand_pdbqt, results_subdir)
         if output_pdbqt:

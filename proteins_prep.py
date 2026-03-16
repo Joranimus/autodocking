@@ -7,28 +7,12 @@ import subprocess
 import sys
 import json
 import shutil
+from settings_loader import get_selected_proteins
 
+proteins = get_selected_proteins()
 
-# Set default JSON file path (relative to c:\Users\Jora\Desktop\DOCKING\Programm)
-DEFAULT_JSON = "temp_proteins.json"
-
-# Read JSON input file
-input_json = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_JSON
-proteins = []
-
-try:
-    with open(input_json, "r") as f:
-        proteins = json.load(f)
-except FileNotFoundError:
-    print(f"Error: JSON file '{input_json}' not found. Ensure it exists in {os.path.dirname(input_json)}.")
-    sys.exit(1)
-except json.JSONDecodeError as e:
-    print(f"Error: Invalid JSON in '{input_json}': {e}")
-    sys.exit(1)
-
-# Validate input
 if not proteins:
-    print("Error: No proteins found in input JSON.")
+    print("Error: No proteins found in settings.json.")
     sys.exit(1)
 
 # Output directory

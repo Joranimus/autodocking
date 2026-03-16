@@ -6,3 +6,4 @@ temp*.json
 
 # VS Code settings
 .vscode/
+__pycache__

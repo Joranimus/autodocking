@@ -1,9 +1,13 @@
 import os
+import json
 import numpy as np
 from scipy.spatial.distance import cdist
+from settings_loader import get_selected_proteins
 
 proteins_dir = "proteins"
-pdbqt_files = [f for f in os.listdir(proteins_dir) if f.endswith(".pdbqt")]
+selected_proteins = get_selected_proteins()
+pdbqt_files = [f"{p['pdb_id']}_{p['chain_id']}chain.pdbqt" for p in selected_proteins]
+pdbqt_files = [f for f in pdbqt_files if os.path.exists(os.path.join(proteins_dir, f))]
 
 def find_pocket_center(coords):
     """Find largest cavity/pocket center using geometric analysis"""

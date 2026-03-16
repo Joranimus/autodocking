@@ -3,30 +3,13 @@ from rdkit.Chem import AllChem
 import os
 import subprocess
 import sys
-import json
 import shutil
+from settings_loader import get_selected_ligands
 
+ligands = get_selected_ligands()
 
-# Set default JSON file path (relative to c:\Users\Jora\Desktop\DOCKING\Programm)
-DEFAULT_JSON = "temp_ligands.json"
-
-# Read JSON input file
-input_json = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_JSON
-ligands = []
-
-try:
-    with open(input_json, "r") as f:
-        ligands = json.load(f)
-except FileNotFoundError:
-    print(f"Error: JSON file '{input_json}' not found. Ensure it exists in {os.path.dirname(input_json)}.")
-    sys.exit(1)
-except json.JSONDecodeError as e:
-    print(f"Error: Invalid JSON in '{input_json}': {e}")
-    sys.exit(1)
-
-# Validate input
 if not ligands:
-    print("Error: No ligands found in input JSON.")
+    print("Error: No ligands selected in settings.json. Run list_read step and select ligands first.")
     sys.exit(1)
 
 # Output directory (relative to Programm)

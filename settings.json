@@ -1,0 +1,166 @@
+{
+    "steps": {
+        "RUN_LIST_READ": false,
+        "RUN_PROTEIN_PREP": true,
+        "RUN_CONFIG_BOX": true,
+        "RUN_LIGAND_PREP": true,
+        "RUN_DOCKING": true,
+        "RUN_EXTRACT_POSES": false,
+        "RUN_EXTRACT_RESULTS": true
+    },
+    "box_mode": "whole",
+    "selected_proteins": [
+        {
+            "pdb_id": "1ZOG",
+            "chain_id": "A"
+        }
+    ],
+    "selected_ligands": [
+        {
+            "smiles": "CSC1=NC2=C(N1)C(=C(C(=C2Br)Br)Br)Br",
+            "name": "K37"
+        },
+        {
+            "smiles": "Clc1ccc(cc1)C(=O)Cn2c3c(Br)c(Br)c(Br)c(Br)c3nc2SC",
+            "name": "S6"
+        },
+        {
+            "smiles": "CC(=O)CSC1=NC2=C(Br)C(Br)=C(Br)C(Br)=C2N1",
+            "name": "S11"
+        },
+        {
+            "smiles": "Brc3c2c(nc1SCC(=O)n12)c(Br)c(Br)c3Br",
+            "name": "C1"
+        },
+        {
+            "smiles": "Brc4c3c(nc2S\\C(=C/c1ccccc1)C(=O)n23)c(Br)c(Br)c4Br",
+            "name": "C2"
+        },
+        {
+            "smiles": "Brc4c3c(nc2SC(/N=N/c1ccccc1)C(=O)n23)c(Br)c(Br)c4Br",
+            "name": "C3"
+        },
+        {
+            "smiles": "Brc5c4c(nc3S\\C(=C/c1ccc(cc1)N2CCOCC2)C(=O)n34)c(Br)c(Br)c5Br",
+            "name": "C4"
+        },
+        {
+            "smiles": "O=C(OCC)c1ccc(cc1)/C=C3\\Sc4nc2c(Br)c(Br)c(Br)c(Br)c2n4C3=O",
+            "name": "C5"
+        },
+        {
+            "smiles": "Brc5c4c(nc3S\\C(=C/c1ccc(cc1)N2CCNCC2)C(=O)n34)c(Br)c(Br)c5Br",
+            "name": "C6"
+        },
+        {
+            "smiles": "CN1CCN(CC1)c2ccc(cc2)/C=C4\\Sc5nc3c(Br)c(Br)c(Br)c(Br)c3n5C4=O",
+            "name": "C7"
+        },
+        {
+            "smiles": "Brc1c2[nH]c(SCCCN3CCN(C)CC3)nc2c(Br)c(Br)c1Br",
+            "name": "A1"
+        },
+        {
+            "smiles": "Brc1c(Br)c(Br)c(Br)c2nc(SCCCN3CCOCC3)[nH]c21",
+            "name": "A2"
+        },
+        {
+            "smiles": "Brc1c2[nH]c(SCCCOc3cccc(CN4CCN(C)CC4)c3)nc2c(Br)c(Br)c1Br",
+            "name": "A3"
+        },
+        {
+            "smiles": "Brc1c2[nH]c(SCCCOc3cccc(CN4CCN(CC4)CC)c3)nc2c(Br)c(Br)c1Br",
+            "name": "A4"
+        },
+        {
+            "smiles": "N#CCN1CCN(CC1)Cc1cccc(OCCCSc2[nH]c3c(n2)c(Br)c(Br)c(Br)c3Br)c1",
+            "name": "A5"
+        },
+        {
+            "smiles": "N#CCCN1CCN(Cc2cccc(OCCCSc3[nH]c4c(n3)c(Br)c(Br)c(Br)c4Br)c2)CC1",
+            "name": "A6"
+        },
+        {
+            "smiles": "Brc1c2[nH]c(SCCCOc3cccc(CN4CCN(CC4)c4ccccc4)c3)nc2c(Br)c(Br)c1Br",
+            "name": "A7"
+        },
+        {
+            "smiles": "Fc1ccccc1N1CCN(CC1)Cc1cccc(OCCCSc2[nH]c3c(n2)c(Br)c(Br)c(Br)c3Br)c1",
+            "name": "A8"
+        }
+    ],
+    "ligands": [
+        {
+            "smiles": "CSC1=NC2=C(N1)C(=C(C(=C2Br)Br)Br)Br",
+            "name": "K37"
+        },
+        {
+            "smiles": "Clc1ccc(cc1)C(=O)Cn2c3c(Br)c(Br)c(Br)c(Br)c3nc2SC",
+            "name": "S6"
+        },
+        {
+            "smiles": "CC(=O)CSC1=NC2=C(Br)C(Br)=C(Br)C(Br)=C2N1",
+            "name": "S11"
+        },
+        {
+            "smiles": "Brc3c2c(nc1SCC(=O)n12)c(Br)c(Br)c3Br",
+            "name": "C1"
+        },
+        {
+            "smiles": "Brc4c3c(nc2S\\C(=C/c1ccccc1)C(=O)n23)c(Br)c(Br)c4Br",
+            "name": "C2"
+        },
+        {
+            "smiles": "Brc4c3c(nc2SC(/N=N/c1ccccc1)C(=O)n23)c(Br)c(Br)c4Br",
+            "name": "C3"
+        },
+        {
+            "smiles": "Brc5c4c(nc3S\\C(=C/c1ccc(cc1)N2CCOCC2)C(=O)n34)c(Br)c(Br)c5Br",
+            "name": "C4"
+        },
+        {
+            "smiles": "O=C(OCC)c1ccc(cc1)/C=C3\\Sc4nc2c(Br)c(Br)c(Br)c(Br)c2n4C3=O",
+            "name": "C5"
+        },
+        {
+            "smiles": "Brc5c4c(nc3S\\C(=C/c1ccc(cc1)N2CCNCC2)C(=O)n34)c(Br)c(Br)c5Br",
+            "name": "C6"
+        },
+        {
+            "smiles": "CN1CCN(CC1)c2ccc(cc2)/C=C4\\Sc5nc3c(Br)c(Br)c(Br)c(Br)c3n5C4=O",
+            "name": "C7"
+        },
+        {
+            "smiles": "Brc1c2[nH]c(SCCCN3CCN(C)CC3)nc2c(Br)c(Br)c1Br",
+            "name": "A1"
+        },
+        {
+            "smiles": "Brc1c(Br)c(Br)c(Br)c2nc(SCCCN3CCOCC3)[nH]c21",
+            "name": "A2"
+        },
+        {
+            "smiles": "Brc1c2[nH]c(SCCCOc3cccc(CN4CCN(C)CC4)c3)nc2c(Br)c(Br)c1Br",
+            "name": "A3"
+        },
+        {
+            "smiles": "Brc1c2[nH]c(SCCCOc3cccc(CN4CCN(CC4)CC)c3)nc2c(Br)c(Br)c1Br",
+            "name": "A4"
+        },
+        {
+            "smiles": "N#CCN1CCN(CC1)Cc1cccc(OCCCSc2[nH]c3c(n2)c(Br)c(Br)c(Br)c3Br)c1",
+            "name": "A5"
+        },
+        {
+            "smiles": "N#CCCN1CCN(Cc2cccc(OCCCSc3[nH]c4c(n3)c(Br)c(Br)c(Br)c4Br)c2)CC1",
+            "name": "A6"
+        },
+        {
+            "smiles": "Brc1c2[nH]c(SCCCOc3cccc(CN4CCN(CC4)c4ccccc4)c3)nc2c(Br)c(Br)c1Br",
+            "name": "A7"
+        },
+        {
+            "smiles": "Fc1ccccc1N1CCN(CC1)Cc1cccc(OCCCSc2[nH]c3c(n2)c(Br)c(Br)c(Br)c3Br)c1",
+            "name": "A8"
+        }
+    ]
+}

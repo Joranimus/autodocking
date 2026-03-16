@@ -1,19 +1,13 @@
 import os
 import json
-import subprocess
 
-# Paths relative to script (c:\Users\Jora\Desktop\DOCKING\Programm)
-protein_prep_script = "batch_prepare_proteins.py"
-ligand_prep_script = "prepare_ligands.py"
 input_file = "input_lists.txt"
 proteins_dir = "proteins"
 ligands_dir = "ligands"
 
-# Create output directories
 os.makedirs(proteins_dir, exist_ok=True)
 os.makedirs(ligands_dir, exist_ok=True)
 
-# Read input file
 proteins = []
 ligands = []
 current_section = None
@@ -36,7 +30,6 @@ with open(input_file, "r") as f:
             smiles, name = line.rsplit(" ", 1)
             ligands.append({"smiles": smiles, "name": name})
 
-# Validate inputs
 if not proteins:
     print("Error: No proteins found in [Proteins] section.")
     exit(1)
@@ -44,14 +37,14 @@ if not ligands:
     print("Error: No ligands found in [Ligands] section.")
     exit(1)
 
-# Save proteins to JSON
-proteins_json = "temp_proteins.json"
-with open(proteins_json, "w") as f:
-    json.dump(proteins, f)
+# Save ligands into settings.json
+settings_file = "settings.json"
+with open(settings_file, "r") as f:
+    settings = json.load(f)
 
-# Save ligands to JSON
-ligands_json = "temp_ligands.json"
-with open(ligands_json, "w") as f:
-    json.dump(ligands, f)
+settings["ligands"] = ligands
 
-print("List read successfully.")
+with open(settings_file, "w") as f:
+    json.dump(settings, f, indent=4)
+
+print(f"List read successfully: {len(proteins)} proteins, {len(ligands)} ligands saved to settings.json")
